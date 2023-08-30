@@ -25,6 +25,6 @@ app.use(notFound);
 app.use(handlerError);
 
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`O Servidor esta rodando na porta: ${PORT}`)
 })

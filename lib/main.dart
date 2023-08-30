@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
+import 'package:adminease/escolas/services/auth_services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 
 void main() {
@@ -17,140 +19,116 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   ValueNotifier<dynamic> result = ValueNotifier(null);
+
   // This widget is the root of your application.
   @override
-  
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // TRY THIS: Try running your application with "flutter run". You'll see
+          // the application has a blue toolbar. Then, without quitting the app,
+          // try changing the seedColor in the colorScheme below to Colors.green
+          // and then invoke "hot reload" (save your changes or press the "hot
+          // reload" button in a Flutter-supported IDE, or press "r" if you used
+          // the command line to start the app).
+          //
+          // Notice that the counter didn't reset back to zero; the application
+          // state is not lost during the reload. To reset the state, use hot
+          // restart instead.
+          //
+          // This works for code too, not just values: Most code changes can be
+          // tested with just a hot reload.
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: LoginPage());
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: RegisterScreen(),
+    );
+  }
+}
+
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final AuthService authService = AuthService();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _escolaController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _escolaController.dispose();
+  }
+
+  void _signUp() {
+    authService.signUpEscola(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+        escola: _escolaController.text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Register"),
       ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('NfcManager Plugin Example')),
-        body: SafeArea(
-          child: FutureBuilder<bool>(
-            future: NfcManager.instance.isAvailable(),
-            builder: (context, ss) => ss.data != true
-                ? Center(child: Text('NfcManager.isAvailable(): ${ss.data}'))
-                : Flex(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    direction: Axis.vertical,
-                    children: [
-                      Flexible(
-                        flex: 2,
-                        child: Container(
-                          margin: EdgeInsets.all(4),
-                          constraints: BoxConstraints.expand(),
-                          decoration: BoxDecoration(border: Border.all()),
-                          child: SingleChildScrollView(
-                            child: ValueListenableBuilder<dynamic>(
-                              valueListenable: result,
-                              builder: (context, value, _) =>
-                                  Text('${value ?? ''}'),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 3,
-                        child: GridView.count(
-                          padding: EdgeInsets.all(4),
-                          crossAxisCount: 2,
-                          childAspectRatio: 4,
-                          crossAxisSpacing: 4,
-                          mainAxisSpacing: 4,
-                          children: [
-                            ElevatedButton(
-                                child: Text('Tag Read'), onPressed: _tagRead),
-                            ElevatedButton(
-                                child: Text('Ndef Write'),
-                                onPressed: _ndefWrite),
-                            ElevatedButton(
-                                child: Text('Ndef Write Lock'),
-                                onPressed: _ndefWriteLock),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-          ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(
+                labelText: "Email",
+              ),
+            ),
+            SizedBox(height: 16.0),
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+              ),
+            ),
+            SizedBox(height: 32.0),
+            TextField(
+              controller: _escolaController,
+
+              decoration: InputDecoration(
+                labelText: "Escola",
+              ),
+            ),
+            SizedBox(height: 32.0),
+            ElevatedButton(
+              onPressed: () {
+                _signUp();
+              }, // Chama a função de registro
+              child: Text("Sign Up"),
+            ),
+          ],
         ),
       ),
     );
-  }
-
-  void _tagRead() {
-    NfcManager.instance.startSession(onDiscovered: (NfcTag tag) async {
-      result.value = tag.data;
-      NfcManager.instance.stopSession();
-    });
-  }
-
-  void _ndefWrite() {
-    NfcManager.instance.startSession(onDiscovered: (NfcTag tag) async {
-      var ndef = Ndef.from(tag);
-      if (ndef == null || !ndef.isWritable) {
-        result.value = 'Tag is not ndef writable';
-        NfcManager.instance.stopSession(errorMessage: result.value);
-        return;
-      }
-
-      NdefMessage message = NdefMessage([
-        NdefRecord.createText('Hello World!'),
-        NdefRecord.createUri(Uri.parse('https://flutter.dev')),
-        NdefRecord.createMime(
-            'text/plain', Uint8List.fromList('Hello'.codeUnits)),
-        NdefRecord.createExternal(
-            'com.example', 'mytype', Uint8List.fromList('mydata'.codeUnits)),
-      ]);
-
-      try {
-        await ndef.write(message);
-        result.value = 'Success to "Ndef Write"';
-        NfcManager.instance.stopSession();
-      } catch (e) {
-        result.value = e;
-        NfcManager.instance.stopSession(errorMessage: result.value.toString());
-        return;
-      }
-    });
-  }
-
-  void _ndefWriteLock() {
-    NfcManager.instance.startSession(onDiscovered: (NfcTag tag) async {
-      var ndef = Ndef.from(tag);
-      if (ndef == null) {
-        result.value = 'Tag is not ndef';
-        NfcManager.instance.stopSession(errorMessage: result.value.toString());
-        return;
-      }
-
-      try {
-        await ndef.writeLock();
-        result.value = 'Success to "Ndef Write Lock"';
-        NfcManager.instance.stopSession();
-      } catch (e) {
-        result.value = e;
-        NfcManager.instance.stopSession(errorMessage: result.value.toString());
-        return;
-      }
-    });
   }
 }

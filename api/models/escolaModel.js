@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const bcrypt = require("bcrypt");
 let escolaSchema = new mongoose.Schema({
     escola: {
         type: String,
@@ -11,7 +11,7 @@ let escolaSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    hash: {
+    password: {
         type: String,
         required: true,
         
@@ -26,5 +26,17 @@ let escolaSchema = new mongoose.Schema({
     timestamps: true
 }
 );
+
+escolaSchema.pre("save", async function (next) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+});
+
+escolaSchema.methods.isPasswordMatched = async function(
+    enteredPassword
+){
+    return await bcrypt.compare(enteredPassword, this.password);
+}
 
 module.exports = mongoose.model("Escola", escolaSchema)
