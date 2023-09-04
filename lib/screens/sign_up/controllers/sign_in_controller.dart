@@ -1,14 +1,11 @@
 import 'dart:convert';
-
-
 import 'package:adminease/screens/sign_up/notifier/register_notifier.dart';
 import 'package:adminease/common/utils/popup_message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-
 import '../../../common/utils/error_handler.dart';
-import '../../../escolas/constants/utils.dart';
+import '../../../common/utils/utils.dart';
 
 class SignUpController{
   final WidgetRef ref;
@@ -32,6 +29,7 @@ class SignUpController{
       toastInfo("Sua senhas nao estao iguais");
     }
     try{
+
       Map<String, dynamic> requestData = {
         'name': name,
         'email': email,

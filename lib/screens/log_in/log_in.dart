@@ -1,23 +1,32 @@
 
+import 'package:adminease/screens/log_in/controllers/log_in_controller.dart';
+import 'package:adminease/screens/log_in/notifier/log_in_notifier.dart';
 import 'package:adminease/screens/sign_up/sign_up.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LogIn extends StatefulWidget {
-  const LogIn({super.key});
+class LogIn extends ConsumerStatefulWidget {
+  const LogIn({Key? key}): super(key: key);
 
   @override
-  State<LogIn> createState() => _LogInState();
+  ConsumerState<LogIn> createState() => _LogInState();
 }
 
-class _LogInState extends State<LogIn> {
+class _LogInState extends ConsumerState<LogIn> {
   String email = '';
   String password = '';
   String user = '';
+late LogInController _controller;
 
+@override
+void initState(){
+  _controller = LogInController(ref);
+  super.initState();
+}
 
   @override
   Widget build(BuildContext context) {
-
+    final signInProvider = ref.watch(logInNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -32,22 +41,17 @@ class _LogInState extends State<LogIn> {
           children: <Widget>[
             
             TextField(
-              onChanged: (value) {
-                setState(() {
-                  email = value;
-                });
-              },
+              onChanged: (value) => ref.read(logInNotifierProvider.notifier).onUserEmailChange(
+    value),
+
               decoration: InputDecoration(
                 labelText: 'Email',
               ),
             ),
             SizedBox(height: 20.0),
             TextField(
-              onChanged: (value) {
-                setState(() {
-                  password = value;
-                });
-              },
+              onChanged: (value) => ref.read(logInNotifierProvider.notifier).onUserPasswordChange(
+                  value),
               decoration: InputDecoration(
                 labelText: 'Senha',
               ),
@@ -57,11 +61,7 @@ class _LogInState extends State<LogIn> {
 
 
             ElevatedButton(
-              onPressed: () {
-                print('Email: $email');
-                print('Senha: $password');
-
-              },
+              onPressed: () => _controller.handllerLogIn(),
               child: Text('Login'),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,

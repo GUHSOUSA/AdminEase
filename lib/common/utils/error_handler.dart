@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:adminease/escolas/constants/utils.dart';
+import 'package:adminease/common/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
