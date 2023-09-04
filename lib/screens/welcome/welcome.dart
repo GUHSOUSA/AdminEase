@@ -8,14 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 //final indexProvider = StateProvider<int>((ref)=>0);
 
 class Welcome extends ConsumerWidget {
-
   Welcome({Key? key}) : super(key: key);
 
   final PageController _controller = PageController();
+
   //int dotsIndicator=0;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final index = ref.watch(indexDotProviderProvider);
 
     return SafeArea(
@@ -26,7 +25,7 @@ class Welcome extends ConsumerWidget {
           alignment: Alignment.topCenter,
           children: [
             PageView(
-              onPageChanged: (value){
+              onPageChanged: (value) {
                 ref.read(indexDotProviderProvider.notifier).changeIndex(value);
               },
               controller: _controller,
@@ -35,11 +34,13 @@ class Welcome extends ConsumerWidget {
                 appOnBoardPage(_controller,
                     title: "nfc",
                     subtitle: "primeira onboard screen",
-                    index: 1),
+                    index: 1, context: context),
                 appOnBoardPage(_controller,
-                    title: "nfc", subtitle: "segunda onboard screen", index: 2),
+                    title: "nfc", subtitle: "segunda onboard screen", index: 2, context: context),
                 appOnBoardPage(_controller,
-                    title: "nfc", subtitle: "terceira onboard screen", index: 3),
+                    title: "nfc",
+                    subtitle: "terceira onboard screen",
+                    index: 3, context: context),
               ],
             ),
             Positioned(
@@ -48,9 +49,7 @@ class Welcome extends ConsumerWidget {
                 position: index,
                 dotsCount: 3,
                 mainAxisAlignment: MainAxisAlignment.center,
-                decorator: const DotsDecorator(
-                  size: Size.square(9.0)
-                ),
+                decorator: const DotsDecorator(size: Size.square(9.0)),
               ),
             )
           ],

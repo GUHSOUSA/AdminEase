@@ -1,17 +1,17 @@
 import 'package:adminease/common/widgets/app_shadow.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../common/widgets/text_widget.dart';
 
-Widget appOnBoardPage(PageController controller, {String title = "", String subtitle = "", index=0}){
+Widget appOnBoardPage(PageController controller, {String title = "", String subtitle = "", index=0, required BuildContext context}){
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       // Ícone grande
       Container(
+
         width: double.infinity,
         height: 300.h,
         decoration: BoxDecoration(
@@ -35,16 +35,18 @@ Widget appOnBoardPage(PageController controller, {String title = "", String subt
       // Subtítulo
       text16Normal(text: subtitle),
 
-      _nextButton(index, controller)
+      _nextButton(index, controller, context),
     ],
   );
 }
 
-Widget _nextButton(int index, PageController controller){
+Widget _nextButton(int index, PageController controller, BuildContext context){
   return GestureDetector(
     onTap: (){
       if(index<3){
         controller.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.linear);
+      }else{
+        Navigator.pushNamed(context, "/singIn");
       }
     },
     child: Container(
