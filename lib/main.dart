@@ -1,5 +1,7 @@
 
-import 'package:adminease/escolas/services/auth_services.dart';
+import 'package:adminease/screens/test/empresa.dart';
+import 'package:adminease/screens/test/escola.dart';
+import 'package:adminease/screens/sign_in/sign_in.dart';
 import 'package:adminease/screens/welcome/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,7 +36,15 @@ class _MyAppState extends State<MyApp> {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: Welcome(),
+          initialRoute: "/",
+          routes: {
+            "/": (context)=> Welcome(),
+            "/singIn": (context)=>const SignIn(),
+            "/Escola": (context)=> const Escola(),
+            "/Empresa": (context)=> const Empresa()
+
+          },
+
     ));
   }
 }
