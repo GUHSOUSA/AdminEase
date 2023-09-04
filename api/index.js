@@ -2,7 +2,8 @@ const express = require("express");
 const dbConnect = require("./config/dbConnect");
 const { notFound, handlerError } = require("./middlewares/erroHandller");
 const bodyParser = require("body-parser");
-const escolaRoutes = require("./routes/escolas/escolaRoutes");
+const escolaRoutes = require("./routes/user/userRoutes");
+const userRoutes = require("./routes/user/userRoutes");
 const app = express();
 // aqui eu to decidindo qual porta vou usar no servidor/ pode ser a que eu passar no .env
 // ou a porta 5000 caso nao consiga ler.
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.get("/", (req, res) => {
     res.send("Rota inicial da StartUp. Vamo com tudo!!!!")
 });
-app.use("/api/escola", escolaRoutes);
+app.use("/api/user", userRoutes);
 
 app.use(notFound);
 app.use(handlerError);

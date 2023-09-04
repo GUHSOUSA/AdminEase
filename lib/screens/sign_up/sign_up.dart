@@ -93,7 +93,7 @@ class _SignUpState extends ConsumerState<SignUp>{
               ],
             ),*/
             ElevatedButton(
-              onPressed: () => _controller.handlerSignUo(),
+              onPressed: () => _controller.handlerSignUo(context),
               child: Text('Login'),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,

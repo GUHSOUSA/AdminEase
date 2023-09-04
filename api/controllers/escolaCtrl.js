@@ -6,11 +6,11 @@ const { genereToken } = require("../config/jwtToken");
 
 const regiterEscola = asyncHandler(async (req, res) => {
   try {
-    const { escola, password, email } = req.body;
+    const { name, email, password } = req.body;
 
     // Validação dos campos de entrada
-    if (!escola) {
-      return res.status(400).json({ error: 'Por favor, forneça o nome da escola' });
+    if (!name) {
+      return res.status(400).json({ error: 'Por favor, forneça o nome de usuario' });
     }
     if (!email) {
       return res.status(400).json({ error: 'Por favor, forneça o email' });
@@ -18,12 +18,8 @@ const regiterEscola = asyncHandler(async (req, res) => {
     if (!password) {
       return res.status(400).json({ error: 'Por favor, forneça a senha' });
     }
-    const existingEscola = await escolaModel.findOne({
-      escola: escola
-    })
-    if(existingEscola){
-      return res.status(400).json({ error: 'Esse nome de escola ja esta sendo usado por outra pessoa' });
-    }
+   
+   
     
     // Verificar se o email já está registrado
     const existingEmail = await escolaModel.findOne({ email });
@@ -32,14 +28,13 @@ const regiterEscola = asyncHandler(async (req, res) => {
     }
 
     // Criar um slug amigável para URL
-    const slug = slugify(escola.toLowerCase());
+    
     
     // Criar o documento da escola no banco de dados
     const newEscola = await escolaModel.create({
-      escola,
+      name,
       email,
       password,
-      slug,
     });
 
     res.status(201).json(newEscola); // 201 Created para indicar sucesso na criação

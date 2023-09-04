@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 let escolaSchema = new mongoose.Schema({
-    escola: {
+    name: {
         type: String,
         required: true,
-        unique: true
     },
     email: {
         type: String,
@@ -16,11 +15,7 @@ let escolaSchema = new mongoose.Schema({
         required: true,
         
     },
-    slug: {
-        type: String,
-        required: true,
-        unique: true
-    }
+    
 },
 {
     timestamps: true
