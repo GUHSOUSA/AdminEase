@@ -4,48 +4,39 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../common/widgets/text_widget.dart';
 
-Widget appOnBoardPage(PageController controller, {String title = "", String subtitle = "", index=0, required BuildContext context}){
+Widget appOnBoardPage(PageController controller, {String title = "", String subtitle = "", index = 0, required BuildContext context}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      // Ícone grande
       Container(
-
         width: double.infinity,
         height: 300.h,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.blue, // Personalize a cor do ícone
+          color: Colors.blue,
         ),
-        child: Icon(
+        child: const Icon(
           Icons.star,
-          size: 80.0, // Personalize o tamanho do ícone
-          color: Colors.white, // Personalize a cor do ícone
+          size: 80.0,
+          color: Colors.white,
         ),
       ),
-      SizedBox(height: 20.0),
-
-      // Título
-        text24Normal(text: title),
-
-
-      SizedBox(height: 10.0),
-
-      // Subtítulo
+      const SizedBox(height: 20.0),
+      text24Normal(text: title),
+      const SizedBox(height: 10.0),
       text16Normal(text: subtitle),
-
       _nextButton(index, controller, context),
     ],
   );
 }
-
-Widget _nextButton(int index, PageController controller, BuildContext context){
+Widget _nextButton(int index, PageController controller, BuildContext context) {
   return GestureDetector(
-    onTap: (){
-      if(index<3){
-        controller.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.linear);
-      }else{
+    onTap: () {
+      if (index < 3) {
+        controller.animateToPage(index,
+            duration: const Duration(milliseconds: 300), curve: Curves.linear);
+      } else {
         Navigator.pushNamed(context, "/singIn");
       }
     },
