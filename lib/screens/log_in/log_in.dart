@@ -1,4 +1,5 @@
-import 'package:adminease/screens/sign_in/widgets.dart';
+
+import 'package:adminease/screens/sign_up/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class LogIn extends StatefulWidget {
@@ -18,7 +19,10 @@ class _LogInState extends State<LogIn> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Entrar"),
+      ),
 
       body: Padding(
         padding: EdgeInsets.all(20.0),
@@ -26,18 +30,7 @@ class _LogInState extends State<LogIn> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            TextField(
-              onChanged: (value) {
-                setState(() {
-                  user = value;
-                });
-              },
-              decoration: InputDecoration(
-                labelText: 'usuario',
-              ),
-              obscureText: true,
-            ),
-            SizedBox(height: 20.0),
+            
             TextField(
               onChanged: (value) {
                 setState(() {
@@ -80,13 +73,12 @@ class _LogInState extends State<LogIn> {
             SizedBox(height: 10,),
             ElevatedButton(
               onPressed: () {
-                print('user: $user');
-                print('Email: $email');
-                print('Senha: $password');
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => SignUp()));
              },
-              child: Text('Login'),
+              child: Text('Register'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
+                primary: Colors.amber,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),

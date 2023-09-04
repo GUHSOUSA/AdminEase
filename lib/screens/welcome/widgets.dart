@@ -37,7 +37,7 @@ Widget _nextButton(int index, PageController controller, BuildContext context) {
         controller.animateToPage(index,
             duration: const Duration(milliseconds: 300), curve: Curves.linear);
       } else {
-        Navigator.pushNamed(context, "/singIn");
+        Navigator.pushNamed(context, "/logIn");
       }
     },
     child: Container(

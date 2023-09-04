@@ -1,4 +1,3 @@
-import 'package:adminease/screens/sign_in/widgets.dart';
 import 'package:flutter/material.dart';
 
 class Escola extends StatelessWidget {

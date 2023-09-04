@@ -1,4 +1,5 @@
-import 'package:adminease/screens/sign_in/notifier/register_notifier.dart';
+import 'package:adminease/screens/sign_up/notifier/register_notifier.dart';
+import 'package:adminease/utils/popup_message.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SignUpController{
@@ -15,9 +16,12 @@ class SignUpController{
     print(email);
     print(password);
     print(rePassword);
+    if(state.userName.isEmpty){
+      toastInfo("escreva um nome de usuario");
+    }
 
     if(state.password!=state.rePassword){
-      print("ihusl meu bom");
+      toastInfo("Sua senhas nao estao iguais");
     }
   }
 }

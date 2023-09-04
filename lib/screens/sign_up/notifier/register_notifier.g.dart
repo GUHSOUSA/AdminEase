@@ -6,7 +6,7 @@ part of 'register_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$registerNotifierHash() => r'f263c7e7b430b627fab09ffd2c22f11df9e8a33c';
+String _$registerNotifierHash() => r'583376f6ebe2fefa7d2f6883d070db0f8a070b53';
 
 /// See also [registerNotifier].
 @ProviderFor(registerNotifier)

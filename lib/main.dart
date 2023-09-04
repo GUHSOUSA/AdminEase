@@ -1,6 +1,6 @@
+import 'package:adminease/screens/log_in/log_in.dart';
 import 'package:adminease/screens/test/empresa.dart';
 import 'package:adminease/screens/test/escola.dart';
-import 'package:adminease/screens/sign_in/sign_in.dart';
 import 'package:adminease/screens/welcome/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,8 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(ProviderScope(
-    child: MyApp(),
+  runApp(
+      const ProviderScope(
+        child: MyApp(),
   ));
 }
 
@@ -38,7 +39,7 @@ class _MyAppState extends State<MyApp> {
               initialRoute: "/",
               routes: {
                 "/": (context) => Welcome(),
-                "/singIn": (context) => SignIn(),
+                "/logIn": (context) => LogIn(),
                 "/Escola": (context) => const Escola(),
                 "/Empresa": (context) => const Empresa()
               },
