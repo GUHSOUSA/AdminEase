@@ -1,7 +1,7 @@
 
-import 'package:adminease/screens/log_in/controllers/log_in_controller.dart';
-import 'package:adminease/screens/log_in/notifier/log_in_notifier.dart';
-import 'package:adminease/screens/sign_up/sign_up.dart';
+import 'package:adminease/screens/login/controllers/log_in_controller.dart';
+import 'package:adminease/screens/login/notifier/log_in_notifier.dart';
+import 'package:adminease/screens/register/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,6 +26,7 @@ void initState(){
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final signInProvider = ref.watch(logInNotifierProvider);
     return Scaffold(
       appBar: AppBar(
@@ -58,7 +59,23 @@ void initState(){
               obscureText: true,
             ),
             SizedBox(height: 20.0),
-
+            Row(
+              children: [
+                Radio(
+                  value: 'Escola',
+                  groupValue: signInProvider.select,
+                  onChanged: (value) =>
+                    ref.read(logInNotifierProvider.notifier).onUserSelectChange(value!),
+                ),
+                Text('Escola'),
+                Radio(
+                  value: 'Empresa',
+                  groupValue: signInProvider.select,
+                  onChanged: (value) => ref.read(logInNotifierProvider.notifier).onUserSelectChange(value!),
+                ),
+                Text('Empresa'),
+              ],
+            ),
 
             ElevatedButton(
               onPressed: () => _controller.handllerLogIn(),

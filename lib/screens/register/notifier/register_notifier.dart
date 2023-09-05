@@ -1,5 +1,5 @@
+import 'package:adminease/screens/register/notifier/register_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:adminease/screens/sign_up/notifier/register_state.dart';
 part 'register_notifier.g.dart';
 
 @riverpod

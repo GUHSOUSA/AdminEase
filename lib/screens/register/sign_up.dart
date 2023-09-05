@@ -1,6 +1,5 @@
-import 'package:adminease/screens/sign_up/controllers/sign_in_controller.dart';
-import 'package:adminease/screens/sign_up/notifier/register_notifier.dart';
-
+import 'package:adminease/screens/register/controllers/sign_in_controller.dart';
+import 'package:adminease/screens/register/notifier/register_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,11 +20,12 @@ class _SignUpState extends ConsumerState<SignUp>{
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final registerState = ref.watch(registerNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Entrar"),
+        title: Text("Register"),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
@@ -72,29 +72,10 @@ class _SignUpState extends ConsumerState<SignUp>{
               ),
             ),
             SizedBox(height: 20.0),
-            /*Row(
-              children: [
-                Radio(
-                  value: 'Escola',
-                  groupValue: "selectedOption",
-                  onChanged: (value) {
-
-                  },
-                ),
-                Text('Escola'),
-                Radio(
-                  value: 'Empresa',
-                  groupValue: "selectedOption",
-                  onChanged: (value) {
-
-                  },
-                ),
-                Text('Empresa'),
-              ],
-            ),*/
+            
             ElevatedButton(
               onPressed: () => _controller.handlerSignUo(context),
-              child: Text('Login'),
+              child: Text('Registrar'),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
                 shape: RoundedRectangleBorder(

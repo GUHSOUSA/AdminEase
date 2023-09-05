@@ -1,4 +1,4 @@
-import 'package:adminease/screens/log_in/log_in.dart';
+import 'package:adminease/screens/login/log_in.dart';
 import 'package:adminease/screens/test/empresa.dart';
 import 'package:adminease/screens/test/escola.dart';
 import 'package:adminease/screens/welcome/welcome.dart';

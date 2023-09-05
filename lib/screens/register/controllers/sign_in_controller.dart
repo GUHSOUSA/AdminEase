@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:adminease/screens/sign_up/notifier/register_notifier.dart';
+import 'package:adminease/screens/register/notifier/register_notifier.dart';
 import 'package:adminease/common/utils/popup_message.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
