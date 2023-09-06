@@ -78,7 +78,7 @@ void initState(){
             ),
 
             ElevatedButton(
-              onPressed: () => _controller.handllerLogIn(),
+              onPressed: () => _controller.handllerLogIn(context),
               child: Text('Login'),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
@@ -89,6 +89,7 @@ void initState(){
             ),
             SizedBox(height: 10,),
             ElevatedButton(
+              
               onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => SignUp()));
