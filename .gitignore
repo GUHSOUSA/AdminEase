@@ -45,3 +45,6 @@ app.*.map.json
 
 api\node_modules
 .api\node_modules
+assets/file.enc
+assets/GUSTAVO CV 08_09_2023.pdf
+lib/screens/login/models/user.dart
