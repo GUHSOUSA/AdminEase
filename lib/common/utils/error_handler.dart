@@ -10,16 +10,16 @@ void httpErroHandler({
   required VoidCallback onSuccess,
 }) {
   switch(response.statusCode){
-    case 201:
+    case 200:
     onSuccess();
     break;
     case 400:
-    showSnackBar(context, jsonDecode(response.body)["error"]);
+      showSnackBar(context, jsonDecode(response.body)["error"]);
     break;
     case 500:
-    showSnackBar(context, jsonDecode(response.body)["error"]);
+      showSnackBar(context, jsonDecode(response.body)["error"]);
     break;
     default:
-    showSnackBar(context, response.body);
+      jsonDecode(response.body)["error"];
   }
 }
