@@ -59,7 +59,7 @@ Widget appTextField({String text="", String iconName="", String hintText="", boo
               child: appImage(imagePath: iconName),
             ),
             Container(
-              width: 250.w,
+              width: 250.w,  
               height: 50.h,
               child: TextField(
                 keyboardType: TextInputType.multiline,
