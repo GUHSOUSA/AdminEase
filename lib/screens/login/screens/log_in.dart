@@ -5,6 +5,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 
 class SigInScreen extends ConsumerStatefulWidget {
@@ -29,6 +30,7 @@ class _SigInScreenState extends ConsumerState<SigInScreen>{
       context: context,
       email: _emailController.text,
       password: _passwordController.text,
+      
     );
   }
   var focusNodeEmail = FocusNode();

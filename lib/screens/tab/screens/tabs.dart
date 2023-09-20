@@ -19,7 +19,7 @@ class MainWrapper extends StatelessWidget {
         elevation: 0,
         notchMargin: 10,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 5),
           child: Obx(
             () => Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
