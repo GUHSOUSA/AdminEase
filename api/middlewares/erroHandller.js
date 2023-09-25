@@ -14,7 +14,8 @@ const handlerError = (err, req, res, next) => {
     res.json({
         status: false,
         message: err?.message,
-        stack: err?.stack
+        stack: err?.stack,
+        next: (error)
     });
 
 };

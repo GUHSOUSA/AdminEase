@@ -2,7 +2,6 @@ import 'package:adminease/screens/login/screens/log_in.dart';
 import 'package:adminease/screens/register/screens/sign_up.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthChoice extends StatefulWidget {
@@ -28,7 +27,7 @@ class _AuthChoiceState extends State<AuthChoice> {
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.w),
                   child: Image.network(
                     'https://assets-global.website-files.com/5aa16619a722600001c19c3f/5b844da4d67953ca5b0c5c52_Decode.jpg',
                     width: double.infinity,
@@ -89,41 +88,47 @@ class _AuthChoiceState extends State<AuthChoice> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SigInScreen(),
+                                    builder: (context) => const SigInScreen(),
                                   ));
                             },
                             child: FadeInUp(
                                 delay: const Duration(milliseconds: 1100),
                                 duration: const Duration(milliseconds: 1200),
-                                child: Text('Entrar', style: TextStyle(color: Colors.white),)),
+                                child: Text(
+                                  'Entrar',
+                                  style: TextStyle(color: Colors.white),
+                                )),
                             style: ElevatedButton.styleFrom(
                                 elevation: 0,
                                 textStyle: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 14.sp,
                                     fontWeight: FontWeight.w500,
                                     fontFamily: 'Satoshi'),
-                                backgroundColor:  Color.fromRGBO(52, 237, 231, 1),
+                                backgroundColor:
+                                    Color.fromRGBO(52, 237, 231, 1),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                padding: EdgeInsets.symmetric(vertical: 16)),
+                                padding: EdgeInsets.symmetric(vertical: 15.w)),
                           ),
                         )
                       ],
                     ),
                   ),
-                  SizedBox(height: 5.h,),
+                  SizedBox(
+                    height: 5.h,
+                  ),
                   FadeInUp(
                     delay: const Duration(milliseconds: 1100),
                     duration: const Duration(milliseconds: 1200),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'Não tem uma conta?',
                           style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -132,14 +137,14 @@ class _AuthChoiceState extends State<AuthChoice> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SignUp(),
+                                    builder: (context) => const SignUp(),
                                   ));
                             },
-                            child: const Text(
+                            child: Text(
                               'Registre-se',
                               style: TextStyle(
                                 color: Color.fromRGBO(52, 237, 231, 1),
-                                fontSize: 15,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ))

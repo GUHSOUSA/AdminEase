@@ -1,10 +1,6 @@
 import 'package:adminease/common/widgets/text_widget.dart';
 import 'package:adminease/models/user.dart';
 import 'package:adminease/providers/user_provider.dart';
-import 'package:adminease/screens/home/screens/no_escolas.dart';
-import 'package:adminease/screens/login/screens/log_in.dart';
-import 'package:adminease/screens/login/widget/widgets.dart';
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

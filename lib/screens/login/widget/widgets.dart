@@ -9,7 +9,7 @@ AppBar buildAppBar(String title){
       preferredSize: const Size.fromHeight(1),
       child: Container(
         color: Colors.blue,
-        height: 1,
+        height: 0.8.h,
       ),
     ),
       centerTitle: true,

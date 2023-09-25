@@ -5,7 +5,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 
 class SigInScreen extends ConsumerStatefulWidget {
@@ -94,10 +93,10 @@ class _SigInScreenState extends ConsumerState<SigInScreen>{
                   FadeInDown(
                     delay: const Duration(milliseconds: 700),
                     duration: const Duration(milliseconds: 800),
-                    child: const Text(
+                    child: Text(
                       'Email',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -111,23 +110,23 @@ class _SigInScreenState extends ConsumerState<SigInScreen>{
                           EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
                       decoration: BoxDecoration(
                           color:
-                              isFocusedEmail ? Colors.white : Color(0xFFF1F0F5),
+                              isFocusedEmail ? Colors.white : const Color(0xFFF1F0F5),
                           border:
-                              Border.all(width: 1, color: Color(0xFFD2D2D4)),
+                              Border.all(width: 1, color: const Color(0xFFD2D2D4)),
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             if (isFocusedEmail)
-                              BoxShadow(
-                                  color: Color(0xFF835DF1).withOpacity(.3),
-                                  blurRadius: 4.0,
-                                  spreadRadius: 2.0
+                              const BoxShadow(
+                                  color: Color.fromRGBO(52, 237, 231, 1),
+                                  blurRadius: 1.0,
+                                  spreadRadius: 0.3
                                   // Glow Color
                                   )
                           ]),
                       child: TextField(
                         controller: _emailController,
-                        style: TextStyle(fontWeight: FontWeight.w500),
-                        decoration: InputDecoration(
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                        decoration: const InputDecoration(
                             border: InputBorder.none, hintText: 'Seu Email'),
                         focusNode: focusNodeEmail,
                       ),
@@ -139,10 +138,10 @@ class _SigInScreenState extends ConsumerState<SigInScreen>{
                   FadeInDown(
                     delay: const Duration(milliseconds: 500),
                     duration: const Duration(milliseconds: 600),
-                    child: const Text(
+                    child: Text(
                       'Senha',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -163,10 +162,10 @@ class _SigInScreenState extends ConsumerState<SigInScreen>{
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             if (isFocusedPassword)
-                              BoxShadow(
-                                  color: Color(0xFF835DF1).withOpacity(.3),
-                                  blurRadius: 4.0,
-                                  spreadRadius: 2.0
+                             const BoxShadow(
+                                  color: Color.fromRGBO(52, 237, 231, 1),
+                                  blurRadius: 1.0,
+                                  spreadRadius: 0.3
                                   // Glow Color
                                   )
                           ]),
@@ -217,34 +216,6 @@ class _SigInScreenState extends ConsumerState<SigInScreen>{
                       ],
                     ),
                   ),
-                  FadeInUp(
-                    delay: const Duration(milliseconds: 800),
-                    duration: const Duration(milliseconds: 900),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Já tem uma conta?',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Faça Login',
-                              style: TextStyle(
-                                color: Color.fromRGBO(52, 237, 231, 1),
-                                fontSize: 15,
-                                
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ))
-                      ],
-                    ),
-                  )
                 ],
               ),
             ),
