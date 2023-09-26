@@ -1,4 +1,3 @@
-const escolaModel = require("../models/escolaModel");
 const asyncHandler = require("express-async-handler");
 const slugify = require("slugify");
 const bcrypt = require("bcrypt"); // Adicionando bcrypt para hash de senha
@@ -54,18 +53,18 @@ const loginEscola = asyncHandler(async (req, res ) => {
     if (!password) {
       return res.status(400).json({ error: 'Por favor, forneça a senha' });
     }
-    const findEscola = await escolaModel.findOne({
+    const findUser = await escolaModel.findOne({
       email: email
     });
-    if (!findEscola) {
+    if (!findUser) {
       return res.status(400).json({ error: 'O email Não corresponde a nenhuma escola' });
     }
-    if(findEscola && (await findEscola.isPasswordMatched(password))){
+    if(findUser && (await findUser.isPasswordMatched(password))){
       res.status(201).json({
         status: true,
         message: "Login feto com sucesso",
-        token: genereToken(findEscola?._id),
-        escola: findEscola.escola
+        token: genereToken(findUser?._id),
+        escola: findUser.escola
       });
 
     }else {
@@ -75,6 +74,6 @@ const loginEscola = asyncHandler(async (req, res ) => {
     console.error(error);
     res.status(500).json({ error: 'Ocorreu um erro interno no servidor' });
   }
-})
+});
 
 module.exports = { regiterEscola, loginEscola };
