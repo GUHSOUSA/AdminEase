@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     UserInfo(),
+                    
                   ],
                 ),
         ),

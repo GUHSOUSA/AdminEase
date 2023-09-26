@@ -1,4 +1,5 @@
 import 'package:adminease/screens/home/screens/home_screen.dart';
+import 'package:adminease/screens/home/tagsnfc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +15,7 @@ class MainWrapperController extends GetxController {
 
   List<Widget> pages = [
     HomeScreen(),
-    const Text("knnj"),
+    NfcRead(),
     const Text("jbjbu"),
     const Text("njin"),
   ];
