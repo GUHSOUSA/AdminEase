@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
             ? Provider.of<UserProvider>(context).user.type == "escola"
                 ? MainWrapper()
                 : Text("Empresa")
-            : const AuthChoice(),
+            : MainWrapper(),
       ),
     );
   }
