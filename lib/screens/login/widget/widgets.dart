@@ -43,21 +43,15 @@ Widget _loginButton(String imagePath){
   );
 }
 Widget appTextField({String text="", String iconName="", String hintText="", bool obscure = false}){
-  return Container(
-    padding: EdgeInsets.only(left: 25.w, right: 25.w),
-    child: Column(
+  return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        text16Normal(text: text),
+        
         Container(
           width: 325.w,
           height: 50.h,
-          decoration: appBoxDecorationTextField(color: Colors.white70),
-          child: Row(children: [
-            Container(
-              margin: EdgeInsets.only(left: 17.w),
-              child: appImage(imagePath: iconName),
-            ),
+          decoration: appBoxDecorationTextField(color: Colors.white),
+          child: 
             Container(
               width: 250.w,  
               height: 50.h,
@@ -89,10 +83,9 @@ Widget appTextField({String text="", String iconName="", String hintText="", boo
                 obscureText: obscure,
               ),
             )
-          ]),
-        )
-      ],
-    ),
+          ),
+      ]
+      
   );
 }
 
@@ -100,7 +93,7 @@ Widget appTextField({String text="", String iconName="", String hintText="", boo
 BoxDecoration appBoxDecorationTextField({
   Color color = Colors.white,
   double radius = 15,
-  Color borderColors = Colors.grey,
+  Color borderColors = Colors.black12,
 }){
   return BoxDecoration(
     color: color,
