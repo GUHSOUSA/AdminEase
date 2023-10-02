@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:adminease/common/utils/error_handler.dart';
 import 'package:adminease/common/utils/global_variables.dart';
@@ -23,6 +24,8 @@ class LoginServices {
     required String password,
   }) async {
     try {
+      print(email);
+      print(password);
       if (!isValidEmail(email)) {
         Fluttertoast.showToast(
           msg: "E-mail não é válido",
@@ -34,7 +37,7 @@ class LoginServices {
       }
 
       http.Response res = await http.post(
-        Uri.parse('$uri/api/signin'),
+        Uri.parse('$uri/api/auth/signin'),
         body: jsonEncode({
           'email': email,
           'password': password,
@@ -51,6 +54,7 @@ class LoginServices {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           Provider.of<UserProvider>(context, listen: false).setUser(res.body);
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
+          print(jsonDecode(res.body)['token']);
           Navigator.pushNamedAndRemoveUntil(
             context,
             HomeScreen.routeName,
@@ -74,47 +78,59 @@ class LoginServices {
     }
   }
 
-  // get user data
-  void getUserData(
-    BuildContext context,
-  ) async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('x-auth-token');
+  Future<void> getUserData(BuildContext context) async {
+  try {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      if (token == null) {
-        prefs.setString('x-auth-token', '');
-      }
+    String? token = prefs.getString('x-auth-token');
+    print(token);
+    if (token == null) {
+      prefs.setString('x-auth-token', '');
+      return;
+      print("Sem token");
+    }
 
-      var tokenRes = await http.post(
-        Uri.parse('$uri/tokenIsValid'),
+
+    var tokenRes = await http.post(
+      Uri.parse('$uri/api/auth/tokenIsValid'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': token,
+      },
+    );
+    print("token valido");
+
+    var response = jsonDecode(tokenRes.body);
+
+    if (response == true) {
+      http.Response userRes = await http.get(
+        Uri.parse('$uri/api/auth/'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'x-auth-token': token!
+          'x-auth-token': token
         },
       );
+    
+      print(userRes.body);
 
-      var response = jsonDecode(tokenRes.body);
-
-      if (response == true) {
-        http.Response userRes = await http.get(
-          Uri.parse('$uri/'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': token
-          },
-        );
-
-        var userProvider = Provider.of<UserProvider>(context, listen: false);
-        userProvider.setUser(userRes.body);
-      }
-    } catch (e) {
-      Fluttertoast.showToast(
-        msg: e.toString(),
-        gravity: ToastGravity.TOP,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-      );
+      var userProvider = Provider.of<UserProvider>(context, listen: false);
+      userProvider.setUser(userRes.body);
     }
+    } on SocketException catch (e) {
+  print('Erro de rede: $e');
+} on http.ClientException catch (e) {
+  print('Erro ao fazer requisição: $e');
+} catch (e) {
+  print('Erro desconhecido: $e');
+} catch (e) {
+    Fluttertoast.showToast(
+      msg: e.toString(),
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+    );
+    // Lançando erro para ser capturado pelo FutureBuilder
+    throw Exception('Erro ao obter dados do usuário: $e');
   }
+}
 }

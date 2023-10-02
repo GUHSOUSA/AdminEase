@@ -66,7 +66,7 @@ class _AuthChoiceState extends State<AuthChoice> {
                             delay: const Duration(milliseconds: 900),
                             duration: const Duration(milliseconds: 1000),
                             child: Text(
-                              'controler o acesso de funcionarios e alunos usando o NFC do dispositivo',
+                              'controler o acesso de funcionarios e liste tarefas',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 15.sp, fontWeight: FontWeight.w400),

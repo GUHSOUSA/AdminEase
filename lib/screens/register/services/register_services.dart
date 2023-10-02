@@ -41,15 +41,16 @@ class RegisterService {
         name: name,
         password: password,
         email: email,
-        address: '',
-        type: '',
+        referenceId: '',
+        role: '',
         token: '',
-        escola: [],
-        empresas: []
+        funcionarios: [],
+        
       );
 
+
       http.Response res = await http.post(
-        Uri.parse('$uri/api/signup'),
+        Uri.parse('$uri/api/auth/signup'),
         body: user.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

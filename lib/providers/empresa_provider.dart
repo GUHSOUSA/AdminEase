@@ -8,7 +8,7 @@ class User {
   final String referenceId;
   final String role;
   final String token;
-  final List<String> funcionarios; // Alterado para List<String>
+  
 
   User({
     required this.id,
@@ -18,7 +18,8 @@ class User {
     required this.referenceId,
     required this.role,
     required this.token,
-    required this.funcionarios, // Alterado para List<String>
+    
+
   });
 
   Map<String, dynamic> toMap() {
@@ -30,7 +31,7 @@ class User {
       'referenceId': referenceId,
       'role': role,
       'token': token,
-      'funcionarios': funcionarios, // Alterado para List<String>
+      
     };
   }
 
@@ -42,11 +43,11 @@ class User {
       password: map['password'] ?? '',
       referenceId: map['referenceId'] ?? '',
       role: map['role'] ?? '',
-      token: map['token'] ?? '',
-      funcionarios: List<String>.from(map['funcionarios'] ?? []), // Alterado para List<String>
+      token: map['token'] ?? ''
+      
+      
     );
   }
-
   String toJson() => json.encode(toMap());
 
   factory User.fromJson(String source) => User.fromMap(json.decode(source));
@@ -59,7 +60,8 @@ class User {
     String? referenceId,
     String? role,
     String? token,
-    List<String>? funcionarios, // Alterado para List<String>
+   
+
   }) {
     return User(
       id: id ?? this.id,
@@ -69,7 +71,8 @@ class User {
       referenceId: referenceId ?? this.referenceId,
       role: role ?? this.role,
       token: token ?? this.token,
-      funcionarios: funcionarios ?? this.funcionarios, // Alterado para List<String>
+      
+
     );
   }
 }

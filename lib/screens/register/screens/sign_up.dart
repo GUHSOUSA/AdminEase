@@ -269,34 +269,6 @@ class _SignUpState extends ConsumerState<SignUp>{
                       ],
                     ),
                   ),
-                  FadeInUp(
-                    delay: const Duration(milliseconds: 800),
-                    duration: const Duration(milliseconds: 900),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Já tem uma conta?',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Faça Login',
-                              style: TextStyle(
-                                color: Color.fromRGBO(52, 237, 231, 1),
-                                fontSize: 15,
-
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ))
-                      ],
-                    ),
-                  )
                 ],
               ),
             ),
