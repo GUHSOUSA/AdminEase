@@ -11,6 +11,8 @@ class UserProvider extends ChangeNotifier {
     token: '',
     referenceId: '',
    funcionarios: [],
+   tarefas: [],
+   noticias: []
 
   );
 

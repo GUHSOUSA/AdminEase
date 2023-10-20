@@ -8,7 +8,9 @@ class User {
   final String referenceId;
   final String role;
   final String token;
-  final List<String> funcionarios; // Alterado para List<String>
+  final List<String> funcionarios;
+  final List<String> tarefas;
+  final List<String> noticias; // Alterado para List<String>
 
   User({
     required this.id,
@@ -18,7 +20,9 @@ class User {
     required this.referenceId,
     required this.role,
     required this.token,
-    required this.funcionarios, // Alterado para List<String>
+    required this.funcionarios,
+    required this.tarefas,
+    required this.noticias // Alterado para List<String>
   });
 
   Map<String, dynamic> toMap() {
@@ -30,7 +34,9 @@ class User {
       'referenceId': referenceId,
       'role': role,
       'token': token,
-      'funcionarios': funcionarios, // Alterado para List<String>
+      'funcionarios': funcionarios,
+      'tarefas': tarefas,
+      'noticias': noticias // Alterado para List<String>
     };
   }
 
@@ -44,6 +50,9 @@ class User {
       role: map['role'] ?? '',
       token: map['token'] ?? '',
       funcionarios: List<String>.from(map['funcionarios'] ?? []), // Alterado para List<String>
+      tarefas: List<String>.from(map['tarefas'] ?? []), // Alterado para List<String>
+      noticias: List<String>.from(map['noticias'] ?? []), // Alterado para List<String>
+   
     );
   }
 
@@ -59,7 +68,11 @@ class User {
     String? referenceId,
     String? role,
     String? token,
-    List<String>? funcionarios, // Alterado para List<String>
+    List<String>? funcionarios,
+    List<String>? tarefas,
+    List<String>? noticias,
+    
+     // Alterado para List<String>
   }) {
     return User(
       id: id ?? this.id,
@@ -69,7 +82,9 @@ class User {
       referenceId: referenceId ?? this.referenceId,
       role: role ?? this.role,
       token: token ?? this.token,
-      funcionarios: funcionarios ?? this.funcionarios, // Alterado para List<String>
+      funcionarios: funcionarios ?? this.funcionarios,
+      tarefas: tarefas ?? this.tarefas,
+      noticias: noticias ?? this.noticias, // Alterado para List<String>
     );
   }
 }
