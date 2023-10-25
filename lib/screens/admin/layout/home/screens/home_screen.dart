@@ -2,6 +2,7 @@
 import 'package:adminease/models/tarefas.dart';
 import 'package:adminease/providers/user_provider.dart';
 import 'package:adminease/screens/admin/layout/admin/widgets/search.dart';
+import 'package:adminease/screens/admin/screens/tasks/task_list.dart';
 import 'package:adminease/screens/admin/services/get_tasks.dart';
 import 'package:adminease/widgets/header.dart';
 import 'package:adminease/screens/admin/layout/home/widgets/widgets.dart';
@@ -106,7 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: 2,
+                            itemCount: tarefasList == null ? 0 : (tarefasList!.length > 5 ? 5 : tarefasList?.length),
+
                             itemBuilder: (context, index) {
                               final tasks = tarefasList![index];
                               return listItemTesk(context,tarefas: tasks, titulo: tasks.titulo, user: tasks.desc, status: tasks.status);

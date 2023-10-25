@@ -25,7 +25,7 @@ class _AddNoticiasState extends State<AddNoticias> {
           header(context, back: true, title: "Adicionar noticias"),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.h, vertical: 10.h),
-              child: Text("Task Nome"),
+              child: Text("Noticia Nome"),
             ),
             textField(1),
             Padding(
@@ -42,7 +42,7 @@ class _AddNoticiasState extends State<AddNoticias> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.h, vertical: 1.h),
-              child: Text("Add funcionarios que iram fazer essa task", style: TextStyle(fontSize: 12, color: Colors.grey)),
+              child: Text("Add funcionarios que iram receber essa noticia", style: TextStyle(fontSize: 12, color: Colors.grey)),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.h, vertical: 10.h),

@@ -1,7 +1,9 @@
 import 'package:adminease/providers/user_provider.dart';
 import 'package:adminease/router.dart';
 import 'package:adminease/navigation/tabs.dart';
+import 'package:adminease/screens/admin/services/get_employee.dart';
 import 'package:adminease/services/get_data.dart';
+import 'package:adminease/widgets/header.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,6 +38,7 @@ class _MyAppState extends State<MyApp> {
     userDataFuture = getUser.getUserData(context);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -58,7 +61,18 @@ class _MyAppState extends State<MyApp> {
             } else {
               // Se o Future está completo e nenhum erro ocorreu, renderiza a tela principal
               final user = Provider.of<UserProvider>(context, listen: false).user; // Modifique esta linha
-              return user.token.isNotEmpty ? TabsPage() : const AuthChoice();
+              return user.token.isNotEmpty ? user.role == "Empresaa" ? TabsPage() : SafeArea(child: Scaffold(
+                body: Column(children: [
+                  header(context),
+                  Center(child: Text("Ainda em desenvolvimento"),),
+                  ListTile(
+              
+              leading: Icon(Icons.exit_to_app, color: Colors.red),
+              title: Text('Sair'),
+              onTap: () => GetEmployee().logOut(context),
+            ),
+                ]),
+              ),) : const AuthChoice();
             }
           },
         ),

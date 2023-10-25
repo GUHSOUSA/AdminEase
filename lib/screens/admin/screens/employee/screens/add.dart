@@ -22,7 +22,6 @@ class _AddEmployeeState extends State<AddEmployee> {
   final TextEditingController cargo = TextEditingController();
   final TextEditingController contrato = TextEditingController();
   final TextEditingController salario = TextEditingController();
-  final TextEditingController admin = TextEditingController();
   final AdminServices adminServices = AdminServices();
   
   @override
@@ -32,7 +31,6 @@ class _AddEmployeeState extends State<AddEmployee> {
     cargo.dispose();
     contrato.dispose();
     salario.dispose();
-    admin.dispose();
     name.dispose();
   }
    void sellProduct() {
@@ -43,7 +41,6 @@ class _AddEmployeeState extends State<AddEmployee> {
         email: email.text,
         contrato: contrato.text,
         salario: salario.text,
-        admin: admin.text,
         cargo: cargo.text,
       );
     

@@ -6,7 +6,6 @@ class Employee {
   final String contrato;
   final String salario;
   final String email;
-  final String admin;
   final String  id;
 
   Employee({
@@ -16,7 +15,6 @@ class Employee {
     required this.contrato,
     required this.salario,
     required this.email, 
-    required this.admin,
     required this.id
   });
 
@@ -27,7 +25,6 @@ class Employee {
       'contrato': contrato,
       'salario': salario,
       'email': email,
-      'admin': admin,
       'id': id
     };
   }
@@ -39,7 +36,6 @@ class Employee {
       contrato: map['contrato'] ?? '',
       salario: map['_salario'] ?? '',
       email: map['email'] ?? '',
-      admin: map['admin'] ?? '',
       id: map['_id'] ?? '',
       
     );
